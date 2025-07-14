@@ -300,17 +300,34 @@ for (let i = 0; i < 9999; i++) {
   timeline.push(generateTrial());
 }
 
+
+// === 7.5 Push data to ChildLangLab ===
+var sendData = {
+  type: jsPsychCallFunction,
+  async: true,
+  func: function (done) {
+    let data = jsPsych.data.get().json();
+    childlanglabClient.sendData(data);
+    done("✅ Sent data to childlanglab-api");
+  }
+};
+timeline.push(sendData);
+
+// === 7.6 Final thank-you + Prolific redirect screen ===
+timeline.push({
+  type: "html-button-response",
+  stimulus: `
+    <h2>Thank you for participating!</h2>
+    <p>You may now return to Prolific.</p>
+    <a href="https://app.prolific.co/submissions/complete?cc=YOUR_COMPLETION_CODE">
+      <button>Submit on Prolific</button>
+    </a>
+  `,
+  choices: []
+});
+
+
 // === 8. Start experiment ===
 jsPsych.init({
-  timeline,
-  on_finish: function () {
-    const data = jsPsych.data.get().csv();
-    fetch("https://script.google.com/macros/s/AKfycbxpp9gPECxIcO3J79QLX34uyGMGxIfZ8KCs-5TjokRCo3v74ezv4_IqID7SMwLYtyy62Q/exec", {
-      method: "POST",
-      body: JSON.stringify({ data }),
-      headers: { "Content-Type": "application/json" }
-    }).then(() => console.log("✅ Data sent to Google Sheets"));
-
-    console.log(data); // for debugging
-  }
+  timeline
 });
