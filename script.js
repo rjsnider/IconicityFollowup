@@ -1,4 +1,6 @@
 // === 0. Initialize timeline and variables ===
+const jsPsych = initJsPsych();
+
 var timeline = [];
 let score = 0;
 let history = [];
