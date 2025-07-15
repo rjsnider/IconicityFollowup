@@ -15,7 +15,7 @@ jsPsych.data.addProperties({ PROLIFIC_ID: prolificID });
 
 // === 1. Consent Form ===
 timeline.push({
-  type: htmlButtonResponse,
+  type: jsPsychHtmlButtonResponse,
   stimulus: `
      <div style="text-align:left; max-height:500px; overflow-y:auto; padding:10px; border:1px solid #ccc; font-family: Times, serif; font-size: 14px; width:60%; margin-left:20%;">
       <h3 style="text-align: center;"><b>Fruit Selection Task</b></h3>
@@ -90,7 +90,7 @@ console.log("🧪 Assigned condition:", condition);
 
 // Inject appropriate instructions into timeline
 timeline.push({
-  type: htmlButtonResponse,
+  type: jsPsychHtmlButtonResponse,
   stimulus: instructionTexts[condition] || "<p>Unknown condition.</p>",
   choices: ["Start"],
 });
@@ -167,7 +167,7 @@ function generateTrial() {
   const signalURL = signalMap[signal];
 
   return {
-    type: htmlButtonResponse,
+    type: jsPsychHtmlButtonResponse,
     stimulus: function () {
       const shuffled = jsPsych.randomization.shuffle(fruits);
       // const fruitHTML = shuffled.map(f =>
@@ -318,7 +318,7 @@ timeline.push(sendData);
 
 // === 7.6 Final thank-you + Prolific redirect screen ===
 timeline.push({
-  type: htmlButtonResponse,
+  type: jsPsychHtmlButtonResponse,
   stimulus: `
     <h2>Thank you for participating!</h2>
     <p>You may now return to Prolific.</p>
