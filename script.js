@@ -1,4 +1,9 @@
 // === 0. Initialize timeline and variables ===
+var jsPsych = initJsPsych({
+  use_webaudio: false,
+  }
+});
+
 var timeline = [];
 let score = 0;
 let history = [];
@@ -327,6 +332,4 @@ timeline.push({
 
 
 // === 8. Start experiment ===
-jsPsych.init({
-  timeline
-});
+jsPsych.run(timeline);
