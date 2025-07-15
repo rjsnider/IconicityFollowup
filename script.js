@@ -306,14 +306,14 @@ for (let i = 0; i < 9999; i++) {
 
 // === 7.5 Push data to ChildLangLab ===
 var sendData = {
-  type: jsPsychCallFunction,
-  async: true,
-  func: function (done) {
-    let data = jsPsych.data.get().json();
-    childlanglabClient.sendData(data);
-    done("✅ Sent data to childlanglab-api");
-  }
-};
+   type: jsPsychCallFunction,
+   async: true,
+   func: function (done) {
+     let data = jsPsych.data.get().json();
+     childlanglabClient.sendData(data);
+     done("Sent data object to childlanglab-api")
+   },
+ };
 timeline.push(sendData);
 
 // === 7.6 Final thank-you + Prolific redirect screen ===
