@@ -229,6 +229,9 @@ function generateTrial() {
       if (!timeoutStarted) {
         timeoutStarted = true;
         setTimeout(() => {
+          let data = jsPsych.data.get().json();
+          childlanglabClient.sendData(data);
+          done("Sent data object to childlanglab-api");
           jsPsych.endExperiment(
             "Time's up! Thank you for participating!<br><br>" +
         '<a href="https://app.prolific.co/submissions/complete?cc=YOUR_COMPLETION_CODE">' +
@@ -298,37 +301,11 @@ function generateTrial() {
   };
 }
 
-// === 7. Build trials for 15 minutes ===
-// Allow for many trials and stop the experiment strictly after 15 minutes
+// === 7. Build trials ===
+// Allow for many trials
 for (let i = 0; i < 9999; i++) {
   timeline.push(generateTrial());
 }
-
-// === 7.5 Push data to ChildLangLab ===
-var sendData = {
-   type: jsPsychCallFunction,
-   async: true,
-   func: function (done) {
-     let data = jsPsych.data.get().json();
-     childlanglabClient.sendData(data);
-     done("Sent data object to childlanglab-api")
-   },
- };
-timeline.push(sendData);
-
-// === 7.6 Final thank-you + Prolific redirect screen ===
-timeline.push({
-  type: jsPsychHtmlButtonResponse,
-  stimulus: `
-    <h2>Thank you for participating!</h2>
-    <p>You may now return to Prolific.</p>
-    <a href="https://app.prolific.co/submissions/complete?cc=YOUR_COMPLETION_CODE">
-      <button>Submit on Prolific</button>
-    </a>
-  `,
-  choices: []
-});
-
 
 // === 8. Start experiment ===
 jsPsych.run(timeline);
