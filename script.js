@@ -231,7 +231,7 @@ function generateTrial() {
         setTimeout(() => {
           let data = jsPsych.data.get().json();
           childlanglabClient.sendData(data);
-          done("Sent data object to childlanglab-api");
+          console.log("Sent data object to childlanglab-api");
           jsPsych.endExperiment(
             "Time's up! Thank you for participating!<br><br>" +
         '<a href="https://app.prolific.co/submissions/complete?cc=YOUR_COMPLETION_CODE">' +
