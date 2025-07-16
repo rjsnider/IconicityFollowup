@@ -1,5 +1,5 @@
 // === 0. Initialize timeline and variables ===
-childLangLabClient.init();
+childlanglabClient.init();
 var jsPsych = initJsPsych({
   use_webaudio: false,
 });
