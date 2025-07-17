@@ -238,7 +238,7 @@ function generateTrial() {
         '<a href="https://app.prolific.co/submissions/complete?cc=YOUR_COMPLETION_CODE">' +
         'Click here to return to Prolific</a>'
           );
-        }, 1 * 60 * 1000); // 15 minutes
+        }, 15 * 60 * 1000); // 15 minutes
       }
     },
     on_load: function () {
