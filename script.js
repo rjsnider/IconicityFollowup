@@ -235,7 +235,7 @@ function generateTrial() {
           console.log("Sent data object to childlanglab-api");
           jsPsych.endExperiment(
             "Time's up! Thank you for participating!<br><br>" +
-        '<a href="https://app.prolific.co/submissions/complete?cc=YOUR_COMPLETION_CODE">' +
+        '<a href="https://app.prolific.com/submissions/complete?cc=CLTNNP71">' +
         'Click here to return to Prolific</a>'
           );
         }, 15 * 60 * 1000); // 15 minutes
