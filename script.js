@@ -131,6 +131,7 @@ const signalType = condition.startsWith("iconic") ? "color" : "dot";
 const targetFruitsSubset = jsPsych.randomization.sampleWithoutReplacement(
   fruits.map(f => f.name), 4
 );
+jsPsych.data.addProperties({ targetFruitsSubset });
 console.log("✅ Log will track:", JSON.stringify(targetFruitsSubset));
 
 // === Update log styles ===
@@ -275,9 +276,10 @@ function generateTrial() {
         history.push({
           choice, correct,
           target: fruit.name,
-          signal: signalURL,
+          signal,
           display: targetFruitsSubset.includes(fruit.name)
         });
+        jsPsych.data.addProperties({ history });
 
         setTimeout(() => {
           jsPsych.finishTrial({ choice, correct, target: fruit.name });
