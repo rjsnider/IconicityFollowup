@@ -275,7 +275,7 @@ function generateTrial() {
         history.push({
           choice, correct,
           target: fruit.name,
-          signal,
+          signal: signalURL,
           display: targetFruitsSubset.includes(fruit.name)
         });
 
