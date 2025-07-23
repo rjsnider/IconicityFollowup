@@ -85,8 +85,7 @@ const instructionTexts = {
 
 // === 3. Randomize Between-Subject Condition ===
 const allConditions = ["iconic_nolog", "noniconic_nolog", "iconic_log", "noniconic_log"];
-const condition = allConditions.find(c => window.location.href.includes(c)) ||
-  jsPsych.randomization.sampleWithoutReplacement(allConditions, 1)[0];
+const condition = iconic_nolog;
 jsPsych.data.addProperties({ condition });
 console.log("🧪 Assigned condition:", condition);
 
